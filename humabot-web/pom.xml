@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.juforg.humabot</groupId>
+  <artifactId>humabot-web</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>humabot-web</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>humabot-web</finalName>
+    <plugins>
+    	<!-- 使用maven的编译插件 使maven能够编译1.5以上 -->
+    	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-compiler-plugin</artifactId>
+    		<version>2.5.1</version>
+    		<configuration>
+    			<source>1.6</source>
+  				<target>1.6</target>
+  				<encoding>UTF-8</encoding>
+    		</configuration>
+    	</plugin>
+    	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-resources-plugin</artifactId>
+    		<version>2.6</version>
+    		<configuration>
+  				<encoding>UTF-8</encoding>
+    		</configuration>
+    	</plugin>
+    	<!-- 自动化部署插件 Cargo,部署至tomcat7 -->
+    	<plugin>
+    		<groupId>org.codehaus.cargo</groupId>
+    		<artifactId>cargo-maven2-plugin</artifactId>
+    		<version>1.2.3</version>
+    		<configuration>
+   				<container>
+   					<containerId>tomcat7x</containerId>
+   					<home>D:\apache-tomcat-7.0.30</home>
+   				</container>
+  				<configuration>
+  					<type>existing</type>
+  					<home>D:\apache-tomcat-7.0.30</home>
+  				</configuration>
+    		</configuration>
+    	</plugin>
+    	<!-- 部署到jetty -->
+    	<plugin>
+    		<groupId>org.mortbay.jetty</groupId>
+    		<artifactId>jetty-maven-plugin</artifactId>
+    		<version>8.1.5.v20120716</version>
+    		<configuration>
+    			<scanIntervalSeconds>10</scanIntervalSeconds>
+				<webApp>
+					<contextPath>/${project.build.finalName}</contextPath>
+				</webApp>
+    			<stopKey>foo</stopKey>
+    			<stopPort>9999</stopPort>
+				<reload>automatic</reload>
+    		</configuration>
+    	</plugin>
+    </plugins>
+  </build>
+</project>
