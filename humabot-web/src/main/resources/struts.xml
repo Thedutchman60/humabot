@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <!-- Some or all of these can be flipped to true for debugging 
+    <constant name="struts.i18n.reload" value="false" />
+
+
+    <constant name="struts.freemarker.manager.classname" value="customFreemarkerManager" />
+
+
+    <include file="struts-tiles.xml" />
+
+	
+    <package name="employee" extends="default" namespace="/employee">
+        <default-interceptor-ref name="crudStack"/>
+
+        <action name="list" class="org.apache.struts2.showcase.action.EmployeeAction" method="list">
+            <result>/empmanager/listEmployees.jsp</result>
+            <interceptor-ref name="basicStack"/>
+        </action>
+        <action name="edit-*" class="org.apache.struts2.showcase.action.EmployeeAction">
+      		<param name="empId">{1}</param>
+            <result>/empmanager/editEmployee.jsp</result>
+            <interceptor-ref name="crudStack"><param name="validation.excludeMethods">execute</param></interceptor-ref>
+        </action>
+        <action name="save" class="org.apache.struts2.showcase.action.EmployeeAction" method="save">
+            <result name="input">/empmanager/editEmployee.jsp</result>
+            <result type="redirect">edit-${currentEmployee.empId}.action</result>
+        </action>
+        <action name="delete" class="org.apache.struts2.showcase.action.EmployeeAction" method="delete">
+            <result name="error">/empmanager/editEmployee.jsp</result>
+            <result type="redirect">edit-${currentEmployee.empId}.action</result>
+        </action>
+    </package>
+-->
+</struts>
+

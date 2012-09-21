@@ -1,10 +1,10 @@
-package com.juforg.humabot.testhello;
+package com.jiguancheng.humabot.testhello;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.juforg.humabot.helloworld.Hello;
+import com.jiguancheng.humabot.helloworld.Hello;
 
 public class HelloTest {
 	@Test

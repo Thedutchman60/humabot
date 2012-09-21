@@ -1,12 +1,45 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.juforg.humabot</groupId>
+  <groupId>com.jiguancheng.humabot</groupId>
   <artifactId>humabot-web</artifactId>
+  <!--打包的机制，如pom, jar, maven-plugin, ejb, war, ear, rar, par-->
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
+  <!-- 项目除了artifactId外，可以定义别名 -->
   <name>humabot-web</name>
   <url>http://maven.apache.org</url>
+  <!-- 开发者 -->
+  <developers>
+  	<developer>
+  		<id>juforg</id>
+  		<name>SJ</name>
+  		<roles>
+  			<role>dev</role>
+  		</roles>
+  		<timezone>+8</timezone>
+  	</developer>
+  </developers>
+  <properties>
+      <currentVersion>${project.version}</currentVersion>
+      <struts2.springPlatformVersion>3.0.5.RELEASE</struts2.springPlatformVersion>
+      <ognl.version>3.0.5</ognl.version>
+      <asm.version>3.3</asm.version>
+      <tiles.version>2.0.6</tiles.version>
+      <java.home>C:\glassfish3\jdk</java.home>
+      <tomcat.home>D:\tomcat\apache-tomcat-6.0.35</tomcat.home>
+  </properties>  
+  <!--设置仓库 
+  <repositories>
+  	<repository></repository>
+  </repositories>-->
+  <!-- 项目的问题管理系统 
+  <issueManagement>
+  	<system>jira</system>
+  	<url>http://111.com</url>
+  </issueManagement>-->
+  
+  <!-- 依赖 -->
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -14,9 +47,70 @@
       <version>4.10</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-core</artifactId>
+    	<version>2.3.4.1</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.tiles</groupId>
+    	<artifactId>tiles-core</artifactId>
+    	<version>${tiles.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-tiles-plugin</artifactId>
+    	<version>2.3.4.1</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-core</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-beans</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-aop</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context-support</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-web</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-ibatis</artifactId>
+    	<version>2.0.8</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.ibatis</groupId>
+    	<artifactId>ibatis-sqlmap</artifactId>
+    	<version>2.3.0</version>
+    </dependency>
+    <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.14</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>humabot-web</finalName>
+    <defaultGoal>compile</defaultGoal>
     <plugins>
     	<!-- 使用maven的编译插件 使maven能够编译1.5以上 -->
     	<plugin>
@@ -44,12 +138,12 @@
     		<version>1.2.3</version>
     		<configuration>
    				<container>
-   					<containerId>tomcat7x</containerId>
-   					<home>D:\apache-tomcat-7.0.30</home>
+   					<containerId>tomcat6x</containerId>
+   					<home>${tomcat.home}</home>
    				</container>
   				<configuration>
   					<type>existing</type>
-  					<home>D:\apache-tomcat-7.0.30</home>
+  					<home>${tomcat.home}</home>
   				</configuration>
     		</configuration>
     	</plugin>
@@ -60,9 +154,10 @@
     		<version>8.1.5.v20120716</version>
     		<configuration>
     			<scanIntervalSeconds>10</scanIntervalSeconds>
-				<webApp>
-					<contextPath>/${project.build.finalName}</contextPath>
-				</webApp>
+    			<webAppConfig>
+    				<!-- 从jetty的jar中拷贝出webdefault.xml 修改其中的参数 ，可以修改html,js -->
+    				<defaultsDescriptor>src/main/resources/jetty.xml</defaultsDescriptor>
+    			</webAppConfig>
     			<stopKey>foo</stopKey>
     			<stopPort>9999</stopPort>
 				<reload>automatic</reload>

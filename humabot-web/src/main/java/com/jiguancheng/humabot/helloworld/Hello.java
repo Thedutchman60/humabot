@@ -1,4 +1,4 @@
-package com.juforg.humabot.helloworld;
+package com.jiguancheng.humabot.helloworld;
 
 public class Hello {
 
