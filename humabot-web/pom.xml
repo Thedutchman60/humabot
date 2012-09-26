@@ -13,7 +13,7 @@
   <developers>
   	<developer>
   		<id>juforg</id>
-  		<name>SJ</name>
+  		<name>S J</name>
   		<roles>
   			<role>dev</role>
   		</roles>
@@ -131,6 +131,16 @@
   				<encoding>UTF-8</encoding>
     		</configuration>
     	</plugin>
+    	<plugin>
+    	<!-- 不加此插件会报：war files include a WEB-INF/web.xml which will be ignored -->
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.1.1</version>
+			<configuration>
+			<!-- http://maven.apache.org/plugins/maven-war-plugin/ -->
+			<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+			</configuration>
+		</plugin>
     	<!-- 自动化部署插件 Cargo,部署至tomcat7 -->
     	<plugin>
     		<groupId>org.codehaus.cargo</groupId>
