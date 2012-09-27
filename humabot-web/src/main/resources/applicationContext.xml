@@ -9,8 +9,9 @@
         </constructor-arg>      
     </bean>
     <bean id="customFreemarkerManagerUtil" class="org.apache.struts2.showcase.freemarker.CustomFreemarkerManagerUtil" />
-    
      -->
-
+    
+	<import resource="applicationContext-webservice.xml"/>
+	<import resource="applicationContext-login.xml"/>
 </beans>
 

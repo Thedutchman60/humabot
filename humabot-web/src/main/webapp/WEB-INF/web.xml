@@ -31,21 +31,26 @@
    
   <filter>
   	<filter-name>struts2</filter-name>
-  	<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+  	<!-- <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class> -->
+  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  	<init-param>
+  		<param-name>struts.action.extension</param-name>
+  		<param-value>do</param-value>
+  	</init-param>
   </filter>
   <filter-mapping>
   	<filter-name>struts2</filter-name>
   	<url-pattern>*.do</url-pattern><!-- 这里不要前面的 '/' -->
   </filter-mapping>
 
-  <!--  -->
+ 
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  
+   <!-- 
   <listener>
     <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
-  </listener>
+  </listener> -->
   <listener>
   	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>
@@ -57,6 +62,24 @@
   <session-config>
   	<session-timeout>30</session-timeout>
   </session-config>
+  <!-- web service 相关 -->
+  <servlet>
+  	<servlet-name>CXFServlet</servlet-name>
+  	<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CXFServlet</servlet-name>
+  	<url-pattern>/ws/*</url-pattern>
+  </servlet-mapping>
+  
+  <jsp-config>
+  	<taglib>
+	  <taglib-uri>struts-tags</taglib-uri>  
+	  <taglib-location>/WEB-INF/tld/struts-tags.tld</taglib-location>  
+	</taglib>  
+  </jsp-config>
+  
   
   <!-- 指定首页 -->
   <welcome-file-list>

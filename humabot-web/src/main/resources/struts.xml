@@ -5,37 +5,36 @@
 
 <struts>
 
-    <!-- Some or all of these can be flipped to true for debugging 
-    <constant name="struts.i18n.reload" value="false" />
+    <!-- Some or all of these can be flipped to true for debugging -->
+    <!-- 交给spring管理 -->
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.devMode" value="false" />
+  	<constant name="struts.i18n.reload" value="false" />
 
 
-    <constant name="struts.freemarker.manager.classname" value="customFreemarkerManager" />
-
-
-    <include file="struts-tiles.xml" />
-
+	<package name="cxf-spring" extends="struts-default">
+		<action name="callCxf" class="callCxfService">
+			<result name="success">index.jsp</result>
+		</action>
+		<action name="login" class="loginAction">
+			<result name="success">/jsp/welcome.jsp</result>
+			<result name="input">/jsp/login.jsp</result>
+		</action>
+	</package>
 	
+    <!-- 
+    <include file="struts-tiles.xml" />
     <package name="employee" extends="default" namespace="/employee">
         <default-interceptor-ref name="crudStack"/>
-
-        <action name="list" class="org.apache.struts2.showcase.action.EmployeeAction" method="list">
-            <result>/empmanager/listEmployees.jsp</result>
-            <interceptor-ref name="basicStack"/>
-        </action>
         <action name="edit-*" class="org.apache.struts2.showcase.action.EmployeeAction">
       		<param name="empId">{1}</param>
             <result>/empmanager/editEmployee.jsp</result>
-            <interceptor-ref name="crudStack"><param name="validation.excludeMethods">execute</param></interceptor-ref>
-        </action>
-        <action name="save" class="org.apache.struts2.showcase.action.EmployeeAction" method="save">
-            <result name="input">/empmanager/editEmployee.jsp</result>
-            <result type="redirect">edit-${currentEmployee.empId}.action</result>
-        </action>
-        <action name="delete" class="org.apache.struts2.showcase.action.EmployeeAction" method="delete">
-            <result name="error">/empmanager/editEmployee.jsp</result>
-            <result type="redirect">edit-${currentEmployee.empId}.action</result>
+            <interceptor-ref name="crudStack">
+            	<param name="validation.excludeMethods">execute</param>
+            </interceptor-ref>
         </action>
     </package>
--->
+     -->
+
 </struts>
 
