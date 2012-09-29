@@ -20,21 +20,19 @@
 			<result name="success">/jsp/welcome.jsp</result>
 			<result name="input">/jsp/login.jsp</result>
 		</action>
+		<action name="welcome" class="loginAction">
+			<result name="success">/jsp/welcome.jsp</result>
+			<result name="input">/jsp/login.jsp</result>
+		</action>
 	</package>
 	
     <!-- 
     <include file="struts-tiles.xml" />
-    <package name="employee" extends="default" namespace="/employee">
-        <default-interceptor-ref name="crudStack"/>
-        <action name="edit-*" class="org.apache.struts2.showcase.action.EmployeeAction">
-      		<param name="empId">{1}</param>
-            <result>/empmanager/editEmployee.jsp</result>
-            <interceptor-ref name="crudStack">
-            	<param name="validation.excludeMethods">execute</param>
-            </interceptor-ref>
-        </action>
-    </package>
      -->
-
+	<package name="ajax" extends="json-default">
+		<action name="ajaxRequest" class="com">
+			
+		</action>
+	</package>
 </struts>
 

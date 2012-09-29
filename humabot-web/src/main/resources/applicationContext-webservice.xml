@@ -6,11 +6,9 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd   
 		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"> 
-     <!--    
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
-     -->
+
 	<jaxws:endpoint id ="helloWS" implementor="#helloWSImpl" />
     <bean id="helloWSImpl" class="com.jiguancheng.humabot.webservice.HelloWSImpl">
     </bean>
@@ -20,10 +18,26 @@
     </bean>
     <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
     	<property name="serviceClass" value="com.jiguancheng.humabot.webservice.HelloWS"/>
-    	<property name="address" value="http://localhost:8080/humabot-web/ws/helloWS"/>
+    	<property name="address" value="http://localhost:8080/humabot-online/ws/helloWS"/>
     </bean>
     <bean id="callCxfService" class="com.jiguancheng.humabot.webservice.CallHelloService">
     	<property name="client" ref="client"/>
     </bean>
+    
+    <bean id="userServiceBean" class="com.jiguancheng.humabot.webservice.HelloWSImpl"></bean>
+   <!--  <bean id="inMessageInterceptor" class="">
+    	<constructor-arg value="receive"/>
+    </bean> -->
+    <bean id="outLoggingInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+    <!-- 这里的address的名称就是访问的WebService的name -->  
+    <jaxws:server id="userService" serviceClass="com.jiguancheng.humabot.webservice.HelloWS" address="/ws/users">
+    	<jaxws:serviceBean>
+    		<ref bean="userServiceBean"/>
+    	</jaxws:serviceBean>
+    	<jaxws:outInterceptors>
+    		<ref bean="outLoggingInterceptor"/>
+    	</jaxws:outInterceptors>
+    </jaxws:server>
+    <jaxws:client id="userWSClient" serviceClass="com.jiguancheng.humabot.webservice.HelloWS" address="/ws/callUser"/>
 </beans>
 

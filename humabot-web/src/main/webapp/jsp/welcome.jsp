@@ -10,7 +10,6 @@
 <body>
 <center>
 <s:property value="msg"/> 
-
 </center>
 </body>
 </html>

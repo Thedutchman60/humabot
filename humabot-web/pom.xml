@@ -1,11 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  
+  <parent>
+  	<groupId>com.jiguancheng.humabot</groupId>
+  	<artifactId>humabot-aggregator</artifactId>
+  	<version>1.0-SNAPSHOT</version>
+  	<relativePath>../humabot-aggregator</relativePath>
+  </parent>
+  
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.jiguancheng.humabot</groupId>
   <artifactId>humabot-web</artifactId>
   <!--打包的机制，如pom, jar, maven-plugin, ejb, war, ear, rar, par-->
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
   <!-- 项目除了artifactId外，可以定义别名 -->
   <name>humabot-web</name>
   <url>http://maven.apache.org</url>
@@ -144,31 +150,28 @@
     	<artifactId>cxf-rt-transports-http</artifactId>
     	<version>2.6.2</version>
     </dependency>
+    <dependency>
+    	<groupId>${project.groupId}</groupId>
+    	<artifactId>humabot-common</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>net.sf.json-lib</groupId>
+    	<artifactId>json-lib</artifactId>
+    	<version>2.4</version>
+    	<classifier>jdk15</classifier>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-json-plugin</artifactId>
+    	<version>2.3.4.1</version>
+    </dependency>
   </dependencies>
   <build>
-    <finalName>humabot-web</finalName>
+    <finalName>humabot-online</finalName>
     <defaultGoal>compile</defaultGoal>
     <plugins>
-    	<!-- 使用maven的编译插件 使maven能够编译1.5以上 -->
-    	<plugin>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-compiler-plugin</artifactId>
-    		<version>2.5.1</version>
-    		<configuration>
-    			<source>1.6</source>
-  				<target>1.6</target>
-  				<encoding>UTF-8</encoding>
-    		</configuration>
-    	</plugin>
-    	<plugin>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-resources-plugin</artifactId>
-    		<version>2.6</version>
-    		<configuration>
-  				<encoding>UTF-8</encoding>
-    		</configuration>
-    	</plugin>
-    	<plugin>
+   	    <plugin>
     	<!-- 不加此插件会报：war files include a WEB-INF/web.xml which will be ignored -->
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-war-plugin</artifactId>
@@ -189,8 +192,14 @@
    					<home>${tomcat.home}</home>
    				</container>
   				<configuration>
-  					<type>existing</type>
-  					<home>${tomcat.home}</home>
+  					<type>standalone</type>
+  					<home>${project.build.directory}/tomcat6x</home>
+  					<properties>
+  						<cargo.jvmargs>
+  							-Xdebug
+  							-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787
+  						</cargo.jvmargs>
+  					</properties>
   				</configuration>
     		</configuration>
     		<executions>

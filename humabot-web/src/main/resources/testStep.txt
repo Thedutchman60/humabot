@@ -1,0 +1,12 @@
+1.build
+	运行-->cmd-->到humabot-aggregator目录下 输入mvn clean package install
+2.测试struts with login page
+	http://localhost:8080/humabot-online/
+3.测试cxf webservice
+	http://localhost:8080/humabot-online/ws/helloWS?wsdl
+	
+	http://localhost:8080/humabot-online/ws/users?wsdl
+	看见xml就没问题、
+	action call webservice
+	http://localhost:8080/humabot-online/callCxf.do
+	
