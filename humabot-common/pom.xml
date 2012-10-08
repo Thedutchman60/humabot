@@ -27,6 +27,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    </dependency>
+    <dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-test</artifactId>
     	<version>${struts2.springPlatformVersion}</version>

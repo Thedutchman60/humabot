@@ -68,7 +68,7 @@
 	    <groupId>org.apache.tiles</groupId>
 	    <artifactId>tiles-extras</artifactId>
     <version>${tiles.version}</version>
-  </dependency>
+  	</dependency>
     <dependency>
     	<groupId>org.apache.struts</groupId>
     	<artifactId>struts2-tiles-plugin</artifactId>
@@ -122,7 +122,6 @@
     <dependency>
     	<groupId>log4j</groupId>
     	<artifactId>log4j</artifactId>
-    	<version>1.2.14</version>
     </dependency>
     <!-- 以下为Web service 所需jar包 -->
     <dependency>
@@ -222,10 +221,17 @@
     			<webAppConfig>
     				<!-- 从jetty的jar中拷贝出webdefault.xml 修改其中的参数 ，可以修改html,js -->
     				<defaultsDescriptor>src/main/resources/jetty.xml</defaultsDescriptor>
+    				<contextPath>/${project.build.finalName}</contextPath>
     			</webAppConfig>
     			<stopKey>foo</stopKey>
     			<stopPort>9999</stopPort>
-				<reload>automatic</reload>
+				<reload>manual</reload>
+				<properties>
+					<cargo.jvmargs>
+						-Xdebug
+						-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787
+					</cargo.jvmargs>
+				</properties>
     		</configuration>
     	</plugin>
     </plugins>

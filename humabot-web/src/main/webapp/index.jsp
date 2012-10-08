@@ -15,6 +15,8 @@
 	<tr><td>adress</td><td>${user.address}</td></tr>
 	<tr><td>email:</td><td>${user.email}</td></tr>
 </table>
+</br>
+<a href="">Home</a>
 </center>
 </body>
 </html>

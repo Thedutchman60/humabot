@@ -9,7 +9,9 @@
 </head>
 <body>
 <center>
-<s:property value="msg"/> 
+<s:property value="msg"/>
+</br>
+<a href="">Home</a>
 </center>
 </body>
 </html>

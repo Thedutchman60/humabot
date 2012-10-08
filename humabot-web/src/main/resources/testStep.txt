@@ -9,4 +9,5 @@
 	看见xml就没问题、
 	action call webservice
 	http://localhost:8080/humabot-online/callCxf.do
-	
+4.测试jquery ajax 
+	http://localhost:8080/humabot-online/input_user.do	

@@ -8,10 +8,18 @@
     <!-- Some or all of these can be flipped to true for debugging -->
     <!-- 交给spring管理 -->
     <constant name="struts.objectFactory" value="spring" />
-    <constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <!--该属性设置是否每次HTTP请求到达时,系统都重新加载资源文件(允许国际化文件重载).该属性默认值是false.在开发阶段将该属性设置为true会更有利于开发,但在产品发布阶段应将该属性设置为false. -->
   	<constant name="struts.i18n.reload" value="false" />
-
-
+  	<!--指定Web应用的默认编码集.该属性对于处理中文请求参数非常有用,对于获取中文请求参数值,应该将该属性值设置为GBK或者GB2312;
+  	<constant name="struts.i18n.encoding" value="UTF-8" />  -->
+	<!--该属性指定上传文件的临时保存路径,该属性的默认值是javax.servlet.context.tempdir.   
+	<constant name="struts.multipart.saveDir" value="" />-->
+	<!--该属性设置浏览器是否缓存静态内容.当应用处于开发阶段时,我们希望每次请求都获得服务器的最新响应,则可设置该属性为false. 
+	<constant name="struts.serve.static.browserCache" value="false" /> --> 
+	
+	
+	
 	<package name="cxf-spring" extends="struts-default">
 		<action name="callCxf" class="callCxfService">
 			<result name="success">index.jsp</result>
@@ -29,10 +37,23 @@
     <!-- 
     <include file="struts-tiles.xml" />
      -->
+    <!--采用json数据格式，package的extends必须是extends="json-default"-->  
+    <!--并且必须要用到struts2的json-lib，struts2-json-plugin包-->  
+    <!--采用异步提交方式，result的type="json"，并且result节点值为空-->
 	<package name="ajax" extends="json-default">
-		<action name="ajaxRequest" class="com">
-			
+		<action name="input_user" class="com.jiguancheng.humabot.login.UserAction" method="inputUser">
+			<result name="INPUT_USER">/jsp/input_user.jsp</result>
+			<result name="hel" type="json"></result>
 		</action>
+		<action name="add_user" class="com.jiguancheng.humabot.login.UserAction" method="addUser">  
+            <result name="ADD_SUCCESS" type="json"></result>  
+        </action>
+		<action name="load_allUser" class="com.jiguancheng.humabot.login.UserAction" method="loadAllUser">  
+            <result name="USER" type="json"></result>  
+        </action>
+		<action name="checkName" class="com.jiguancheng.humabot.login.UserAction" method="checkName">  
+            <result name="success" type="json"></result>  
+        </action>
 	</package>
 </struts>
 
