@@ -1,4 +1,4 @@
-package com.jiguancheng.humabot.login;
+package com.jiguancheng.humabot.service.login;
 
 
 public interface LoginService {
