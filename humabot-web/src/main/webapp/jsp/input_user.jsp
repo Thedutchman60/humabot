@@ -17,7 +17,7 @@
         <input type="text" name="userInfo.id" id="userid"/>  
         <input type="text" name="userInfo.name" id="username"/>
         <label id="info"></label>
-        <input type="text" name="userInfo.address" id="useraddress"/>  
+        <input type="text" name="userInfo.email" id="email"/>  
         </form>
     </div>  
     <div>  
@@ -28,7 +28,7 @@
 input_user:  
 </div>  
 
-</br>
+<br/>
 <a href="">Home</a>
 </body>  
 </html>  

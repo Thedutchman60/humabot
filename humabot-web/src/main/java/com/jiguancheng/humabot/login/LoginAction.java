@@ -2,6 +2,7 @@ package com.jiguancheng.humabot.login;
 
 import org.apache.log4j.Logger;
 
+import com.jiguancheng.humabot.service.login.LoginService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 

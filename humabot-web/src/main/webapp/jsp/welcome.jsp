@@ -10,7 +10,7 @@
 <body>
 <center>
 <s:property value="msg"/>
-</br>
+<br/>
 <a href="">Home</a>
 </center>
 </body>

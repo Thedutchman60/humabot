@@ -5,30 +5,31 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.jiguancheng.humabot.entity.User;
+import com.jiguancheng.humabot.entity.UserInfo;
+import com.jiguancheng.humabot.service.login.LoginService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -8486508105163528894L;
-	static Logger logger = Logger.getLogger(LoginAction.class);
+	static Logger logger = Logger.getLogger(UserAction.class);
 	public String inputUser() {
 	    return "INPUT_USER";
 	}
 	
 	public String loadUserInfoList() {
-	    userList = new ArrayList<User>();
+	    userList = new ArrayList<UserInfo>();
 	
-	    User u1 = new User();
+	    UserInfo u1 = new UserInfo();
 	    u1.setId(1);
 	    u1.setName("取得userInfo1");
 	
-	    User u2 = new User();
+	    UserInfo u2 = new UserInfo();
 	    u2.setId(2);
 	    u2.setName("取得userInfo2");
 	
-	    User u3 = new User();
+	    UserInfo u3 = new UserInfo();
 	    u3.setId(3);
 	    u3.setName("取得userInfo3");
 	
@@ -70,16 +71,16 @@ public class UserAction extends ActionSupport {
 		return Action.SUCCESS;
 	}
 	
-	public List<User> getUserList() {
+	public List<UserInfo> getUserList() {
 	    return userList;
 	}
-	public void setUserList(List<User> userList) {
+	public void setUserList(List<UserInfo> userList) {
 	    this.userList = userList;
 	}
-	public User getUserInfo() {
+	public UserInfo getUserInfo() {
 	    return userInfo;
 	}
-	public void setUserInfo(User userInfo) {
+	public void setUserInfo(UserInfo userInfo) {
 	    this.userInfo = userInfo;
 	}
 	public String getMsg() {
@@ -94,8 +95,8 @@ public class UserAction extends ActionSupport {
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
 	}
-	private User userInfo;
+	private UserInfo userInfo;
 	private String msg;
-	private static List<User> userList;
+	private static List<UserInfo> userList;
 	private LoginService loginService;
 }

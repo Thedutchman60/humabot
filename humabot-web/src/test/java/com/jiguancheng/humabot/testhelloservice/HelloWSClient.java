@@ -2,7 +2,7 @@ package com.jiguancheng.humabot.testhelloservice;
 
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 
-import com.jiguancheng.humabot.webservice.HelloWS;
+import com.jiguancheng.humabot.service.webservice.HelloWS;
 
 
 public class HelloWSClient {

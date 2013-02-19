@@ -12,10 +12,10 @@
 <table align="center" border="1" style="border-collapse: collapse" cellspacing="0" borderColor=#000000>
 	<tr><td>username</td><td>${user.name}</td></tr>
 	<tr><td>id</td><td>${user.id}</td></tr>
-	<tr><td>adress</td><td>${user.address}</td></tr>
+	<tr><td>birthday</td><td>${user.birthday}</td></tr>
 	<tr><td>email:</td><td>${user.email}</td></tr>
 </table>
-</br>
+<br/>
 <a href="">Home</a>
 </center>
 </body>

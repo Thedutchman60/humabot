@@ -25,7 +25,7 @@
 			</td>
 		</tr>
 	</table>
-	</br>
+	<br/>
 <a href="">Home</a>
 </body>
 </html>
