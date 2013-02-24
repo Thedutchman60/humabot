@@ -6,19 +6,19 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 
-import com.jiguancheng.humabot.dao.UserDao;
+import com.jiguancheng.humabot.dao.UserDAO;
 import com.jiguancheng.humabot.entity.UserInfo;
 
 public class LoginServiceImpl implements LoginService {
 	static Logger logger = Logger.getLogger(LoginServiceImpl.class);
 	
-	@Resource(name="userDao")//注解方式注入
-	public UserDao userInfoDao;
+	@Resource(name="userDAO")//注解方式注入
+	public UserDAO userInfoDAO;
 	
 	@Override
 	public boolean doLogin(String username, String password) {
 		if (username != null) {
-			UserInfo user = userInfoDao.getUserByName(username);
+			UserInfo user = userInfoDAO.getUserByName(username);
 			if (user!=null && user.getPassword().equals(password)) {
 				return true;
 			}
@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public boolean checkName(String username) {
-		List<String> list = userInfoDao.getAllUserName();
+		List<String> list = userInfoDAO.getAllUserName();
 		for (String name : list) {
 			if (name.equals(username)) {
 				return true;

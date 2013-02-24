@@ -50,7 +50,7 @@
     </bean>
     
     
-	<import resource="applicationContext-login.xml"/>
+	<import resource="applicationContext-login-test.xml"/>
 	
 </beans>
 
