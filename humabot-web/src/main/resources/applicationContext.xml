@@ -48,11 +48,6 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:sqlmap/*.xml"/>
     </bean>
-    <!-- scan for mappers and let them be autowired -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.jiguancheng.humabot.dao" />
-    </bean>
-    
     
     
 	<import resource="applicationContext-webservice.xml"/>

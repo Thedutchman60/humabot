@@ -1,5 +1,7 @@
 package com.jiguancheng.humabot.login;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 
 import com.jiguancheng.humabot.service.login.LoginService;
@@ -11,16 +13,12 @@ public class LoginAction extends ActionSupport {
 	static Logger logger = Logger.getLogger(LoginAction.class);
 
 	private static final long serialVersionUID = 1L;
+	@Resource(name="loginService")
 	private LoginService loginService;
 	private String username;
 	private String password;
 	private String msg;
-	public LoginService getLoginService() {
-		return loginService;
-	}
-	public void setLoginService(LoginService loginService) {
-		this.loginService = loginService;
-	}
+	
 	public String getUsername() {
 		return username;
 	}

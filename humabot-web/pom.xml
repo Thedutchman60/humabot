@@ -208,8 +208,8 @@
    					<home>${tomcat.home}</home>
    				</container>
   				<configuration>
-  					<type>standalone</type>
-  					<home>${project.build.directory}/tomcat6x</home>
+  					<type>existing</type>
+  					<home>${tomcat.home}</home>
   					<properties>
   						<cargo.jvmargs>
   							-Xdebug
