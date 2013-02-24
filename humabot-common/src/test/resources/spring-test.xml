@@ -1,7 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans default-autowire="byName">
-<!--     <bean id="loginService" class="com.jiguancheng.humabot.service.login.LoginServiceImpl">
-    </bean> -->
+<beans  xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+     xmlns:context="http://www.springframework.org/schema/context"
+ 		xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+>
+
+	<!-- Properties文件读取配置，base的properties -->  
+	<context:property-placeholder location="classpath:jdbc.properties"/>  
+	   
+	<!-- JNDI获取数据源(使用c3p0连接池) -->  
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+	            <property name="driverClass" value="${jdbc.driverClass}" />  
+	            <property name="jdbcUrl" value="${jdbc.jdbcUrl}" />  
+	            <property name="user" value="${jdbc.user}" />  
+	            <property name="password" value="${jdbc.password}" />  
+	            <property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}"/>  
+	            <property name="checkoutTimeout" value="${cpool.checkoutTimeout}"/>  
+	            <property name="initialPoolSize" value="${cpool.minPoolSize}"/>  
+	            <property name="minPoolSize" value="${cpool.minPoolSize}"/>  
+	            <property name="maxPoolSize" value="${cpool.maxPoolSize}"/>  
+	            <property name="maxIdleTime" value="${cpool.maxIdleTime}"/>  
+	            <property name="acquireIncrement" value="${cpool.acquireIncrement}"/>  
+	            <property name="maxIdleTimeExcessConnections" value="${cpool.maxIdleTimeExcessConnections}"/>  
+	</bean>  
+	
+	<!-- transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- enable autowire -->
+    <context:annotation-config />
+     <!--enable transaction demarcation with annotations -->
+    <tx:annotation-driven />
+    <!-- (Annotation方式配置services)enable component scanning (beware that this does not enable mapper scanning!) -->       
+    <context:component-scan base-package="com.jiguancheng.humabot.service" />
+    
+    <!-- define the SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:sqlmap/*.xml"/>
+    </bean>
+    
+    
+	<import resource="applicationContext-login.xml"/>
+	
 </beans>
 
