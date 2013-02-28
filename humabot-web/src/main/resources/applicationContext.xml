@@ -50,6 +50,7 @@
     </bean>
     
     
+	<import resource="applicationContext-shiro.xml"/>
 	<import resource="applicationContext-webservice.xml"/>
 	<import resource="applicationContext-login.xml"/>
 	
