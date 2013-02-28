@@ -33,6 +33,7 @@
       <ognl.version>3.0.5</ognl.version>
       <asm.version>3.3</asm.version>
       <tiles.version>2.2.2</tiles.version>
+      <shiro.version>1.2.1</shiro.version>
       <java.home>C:\glassfish3\jdk</java.home>
       <tomcat.home>D:\tomcat\apache-tomcat-6.0.35</tomcat.home>
   </properties>  
@@ -119,6 +120,48 @@
     	<groupId>log4j</groupId>
     	<artifactId>log4j</artifactId>
     </dependency>
+    <!-- 以下为权限框架Shiro 所需jar包 -->
+    <dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-core</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-web</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-aspectj</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-cas</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-ehcache</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-guice</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-quartz</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.shiro</groupId>
+	  <artifactId>shiro-spring</artifactId>
+	  <version>${shiro.version}</version>
+	</dependency>
+    <!-- 以上为权限框架Shiro 所需jar包 -->
     <!-- 以下为Web service 所需jar包 -->
     <dependency>
     	<groupId>org.apache.cxf</groupId>
