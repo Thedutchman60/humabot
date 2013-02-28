@@ -33,7 +33,6 @@
       <ognl.version>3.0.5</ognl.version>
       <asm.version>3.3</asm.version>
       <tiles.version>2.2.2</tiles.version>
-      <shiro.version>1.2.1</shiro.version>
       <java.home>C:\glassfish3\jdk</java.home>
       <tomcat.home>D:\tomcat\apache-tomcat-6.0.35</tomcat.home>
   </properties>  
