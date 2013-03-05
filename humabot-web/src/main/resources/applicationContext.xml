@@ -49,8 +49,9 @@
         <property name="mapperLocations" value="classpath:sqlmap/*.xml"/>
     </bean>
     
-    
+    <!-- 改用spring的安全认证 spring-security
 	<import resource="applicationContext-shiro.xml"/>
+	 -->
 	<import resource="applicationContext-webservice.xml"/>
 	<import resource="applicationContext-login.xml"/>
 	
