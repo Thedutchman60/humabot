@@ -68,6 +68,7 @@
 	  <version>${shiro.version}</version>
 	</dependency>-->
      <!-- 以上为权限框架Shiro 所需jar包 -->
+     
      <!-- 以下为安全认证框架spring-security 所需jar包  -->
     <dependency>
     	<groupId>org.springframework.security</groupId>
@@ -89,7 +90,7 @@
     	<artifactId>spring-security-acl</artifactId>
     	<version>${struts2.springPlatformVersion}</version>
     </dependency>
-     <!-- 以下为安全认证框架spring-security 所需jar包  -->
+     <!-- 以上为安全认证框架spring-security 所需jar包  -->
 	
   </dependencies>
 </project>
