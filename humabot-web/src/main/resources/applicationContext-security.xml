@@ -8,8 +8,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 	
 	<!-- auto-config = true 则使用from-login. 如果不使用该属性 则默认为http-basic(没有session). 
-			access-denied-page:出错后跳转到的错误页面;
-		-->
+			access-denied-page:出错后跳转到的错误页面;-->
 	<http auto-config="true" access-denied-page="/common/403.jsp">
 		<!-- intercept-url:拦截器,可以设定哪些路径需要哪些权限来访问. filters=none 不使用过滤,也可以理解为忽略 -->
 		<intercept-url pattern="/index.jsp" access="ROLE_USER" />
