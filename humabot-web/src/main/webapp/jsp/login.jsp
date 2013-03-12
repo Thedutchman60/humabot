@@ -10,6 +10,11 @@
     <script type="text/javascript" src="/js/testAjax.js"></script> 
 </head>
 <body>
+<div class="error ${param.error == true ? '' : 'hide'}">
+  登陆失败<br>
+  ${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}
+</div>
+
 	<table align="center" borderColor=#000000 border="1" cellpadding="2"
 		style="border-collapse: collapse" cellspacing="0">
 		<tr>
@@ -17,15 +22,16 @@
 		</tr>
 		<tr>
 			<td>
-			<s:form id="id" action="login" method="post" >
+			<s:form id="id" action="login" method="post" style="width:260px;text-align:center;">
+			<legend>登录</legend>
 					<s:textfield name="username" label="用户名" id="username"/>
 					<s:password name="password" label="密码" id="password" />
-					<s:submit value="登录" />
+					<input type="checkbox" name="_spring_security_remember_me" />两周之内不必登陆<br />
+					<s:submit value="登录" /><s:reset>重置</s:reset>
 				</s:form>
 			</td>
 		</tr>
 	</table>
 	<br/>
-<a href="">Home</a>
 </body>
 </html>

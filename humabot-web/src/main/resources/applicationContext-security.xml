@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	
+	<http pattern="/login.jsp" security="none"/>
+ 	<http pattern="/jsp/common/**" security="none"/>
 	<!-- auto-config = true 则使用from-login. 如果不使用该属性 则默认为http-basic(没有session). 
 			access-denied-page:出错后跳转到的错误页面;-->
 	<http auto-config="true" access-denied-page="/common/403.jsp">
 		<!-- intercept-url:拦截器,可以设定哪些路径需要哪些权限来访问. filters=none 不使用过滤,也可以理解为忽略 -->
 		<intercept-url pattern="/index.jsp" access="ROLE_USER" />
-		<intercept-url pattern="/login.jsp" filters="none" />
-		<intercept-url pattern="/common/**" filters="none" />
-		<intercept-url pattern="/script/**" filters="none" />
 		<intercept-url pattern="/admin.jsp" access="ROLE_ADMIN" />
 		<intercept-url pattern="/user.jsp" access="ROLE_USER" />
 		
@@ -47,8 +45,8 @@
 			 -->
 			 <!-- 注入dataSource验证数据库中的用户名.密码.账号状态.和权限相关; -->
 			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username,password,enabled from user where username = ? and enabled = 1"
-				authorities-by-username-query="select u.username,r.name from user u join user_role ur on u.uid = ur.uid join role r on r.rid = ur.rid where u.username = ?" />
+				users-by-username-query="select user_name,user_password,enabled,is_sys from pub_users where user_name = ? and enabled = Y"
+				authorities-by-username-query="select u.user_name,r.role_name from pub_users u join pub_users_roles ur on u.user_id = ur.users_roles_id join pub_roles r on r.role_id = ur.users_roles_id where u.user_name = ?" />
 			<!--
 				使用固定的用户名和密码及权限来做验证. 
 				<user-service>
