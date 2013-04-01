@@ -1,0 +1,1 @@
+global.language.select=选择语言
