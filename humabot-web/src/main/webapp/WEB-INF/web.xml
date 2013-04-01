@@ -73,7 +73,11 @@
   	<filter-name>struts2</filter-name>
   	<url-pattern>*.do</url-pattern><!-- 这里不要前面的 '/' -->
   </filter-mapping>
-  
+  <filter-mapping>
+	<filter-name>struts2</filter-name>
+	<url-pattern>*.jsp</url-pattern>
+	<!--因为若在jsp页面使用struts标签，就必须经过FilterDispacher的过滤，这样配置便可保证所有的jsp都经过FilterDispatcher了，否则要为每一个jsp写配置一个action地址转入-->
+  </filter-mapping>
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

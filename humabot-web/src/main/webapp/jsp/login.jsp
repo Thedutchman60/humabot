@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="struts-tags"%>
+<%@include file="../jsp/common/common.jsp" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,10 +11,38 @@
     <script type="text/javascript" src="/js/testAjax.js"></script> 
 </head>
 <body>
-<div class="error ${param.error == true ? '' : 'hide'}">
-  登陆失败<br>
-  ${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}
-</div>
+<div id="k-content" class="k-content">
+	<div class="error ${param.error == true ? '' : 'hide'}">
+	  登陆失败<br>
+	  ${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}
+	</div>
+<div id="login-view" class="k-header">
+                <div class="right" >
+                    <label for="culture">Choose culture:</label>
+                    <input id="culture" value="en-US" />
+                </div>
+                <h2>Product promotion</h2>
+                <ul id="fieldlist">
+                    <li>
+                    <label for="startDate">Discount start date:</label>
+                    <input id="startDate" />
+                    <input id="startTime" value="12:00 AM" />
+                    </li>
+                    <li>
+                    <label for="endDate">Discount end date:</label>
+                    <input id="endDate" />
+                    <input id="endTime" value="12:00 AM" />
+                    </li>
+                    <li>
+                    <label for="initial">Initial price:</label>
+                    <input id="initial" value="10" min="1"/>
+                    </li>
+                    <li>
+                    <label for="discount">Discount:</label>
+                    <input id="discount" value="0.05" min="0" max="0.5" step="0.01"/>
+                    </li>
+                </ul>
+            </div>
 
 	<table align="center" borderColor=#000000 border="1" cellpadding="2"
 		style="border-collapse: collapse" cellspacing="0">
