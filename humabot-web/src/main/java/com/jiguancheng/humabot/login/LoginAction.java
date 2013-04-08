@@ -1,14 +1,19 @@
 package com.jiguancheng.humabot.login;
 
+import java.util.Locale;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import com.jiguancheng.humabot.common.BaseAction;
 import com.jiguancheng.humabot.service.login.LoginService;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class LoginAction extends ActionSupport {
+public class LoginAction extends BaseAction implements ServletRequestAware{
 
 	static Logger logger = Logger.getLogger(LoginAction.class);
 
@@ -18,6 +23,8 @@ public class LoginAction extends ActionSupport {
 	private String username;
 	private String password;
 	private String msg;
+	private HttpServletRequest request;
+	private String language;
 	
 	public String getUsername() {
 		return username;
@@ -37,8 +44,13 @@ public class LoginAction extends ActionSupport {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 	@Override
 	public String execute() throws Exception {
+		super.getRes(request.getSession());
+		changeLanguage();
 		if (loginService.doLogin(username, password)) {
 			setMsg("登录成功！");
 			return Action.SUCCESS;
@@ -49,5 +61,27 @@ public class LoginAction extends ActionSupport {
 		}
 	}
 	
+	@Override
+	public void setServletRequest(HttpServletRequest httpservletrequest){
+		this.request = httpservletrequest;
+	}
+	
+	public void changeLanguage(){
+		String language = request.getParameter("language");
+		System.out.println(language);
+		if (language != null) {
+            Locale locale = null;
+            if (language.equals("zh_CN")) {
+                locale = new Locale("zh", "CN");  
+            } else if (language.equals("en_US")) {
+                locale = new Locale("en", "US");  
+            } else if (language.equals("ms")) {
+                locale = new Locale("ms");
+            } else {  
+                locale = getLocale();
+            }  
+            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);  
+        }  
+    }  
 	
 }

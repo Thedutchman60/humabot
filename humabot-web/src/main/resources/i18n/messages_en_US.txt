@@ -1,0 +1,8 @@
+global.login.title=System Login
+global.language.select=Choose Language
+label.login.userlogin=User Login
+label.login.username=User Name
+label.login.password=Password
+label.login.rememberme=Remember Me
+button.login.logon=logon
+button.login.reset=reset

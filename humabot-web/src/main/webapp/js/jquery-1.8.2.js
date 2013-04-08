@@ -1395,7 +1395,7 @@ jQuery.support = (function() {
 	// avoid an eval call (in setAttribute) which can cause CSP
 	// to go haywire. See: https://developer.mozilla.org/en/Security/CSP
 	if ( div.attachEvent ) {
-		for ( i in {
+		for ( var i in {
 			submit: true,
 			change: true,
 			focusin: true

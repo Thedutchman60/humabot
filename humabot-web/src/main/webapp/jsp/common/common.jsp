@@ -1,11 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link href="../../css/kendo.common.min.css" rel="stylesheet">
-<link href="../../css/kendo.default.min.css" rel="stylesheet">
-
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/kendo.web.min.js"></script>
-</head>
+<%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
+<%@taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<link href="css/kendo.common.min.css" rel="stylesheet">
+<link href="css/kendo.default.min.css" rel="stylesheet">
+<link href="css/examples-offline.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/kendo.web.min.js"></script>

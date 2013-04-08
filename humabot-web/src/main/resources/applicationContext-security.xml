@@ -44,7 +44,7 @@
 			 -->
 			 <!-- 注入dataSource验证数据库中的用户名.密码.账号状态.和权限相关; -->
 			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select user_name,user_password,enabled,is_sys from pub_users where user_name = ? and enabled = Y"
+				users-by-username-query="select user_name,user_password,enabled,is_sys from pub_users where user_name = ? and enabled = 'Y'"
 				authorities-by-username-query="select u.user_name,r.role_name from pub_users u join pub_users_roles ur on u.user_id = ur.users_roles_id join pub_roles r on r.role_id = ur.users_roles_id where u.user_name = ?" />
 			<!--
 				使用固定的用户名和密码及权限来做验证. 

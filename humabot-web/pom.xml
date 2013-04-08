@@ -116,6 +116,16 @@
     	<version>${struts2.springPlatformVersion}</version>
     </dependency>
     <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc-struts</artifactId>
+    	<version>2.5.6.SEC03</version>
+    </dependency>
+    <dependency>
     	<groupId>log4j</groupId>
     	<artifactId>log4j</artifactId>
     </dependency>
@@ -187,12 +197,12 @@
     	<artifactId>cxf-rt-transports-http</artifactId>
     	<version>2.6.2</version>
     </dependency>
-    <!-- 以上为Web service 所需jar包 -->
+    <!-- 以上为Web service 所需jar包 
     <dependency>
     	<groupId>${project.groupId}</groupId>
     	<artifactId>humabot-common</artifactId>
     	<version>${project.version}</version>
-    </dependency>
+    </dependency>-->
     <dependency>
     	<groupId>net.sf.json-lib</groupId>
     	<artifactId>json-lib</artifactId>
@@ -204,13 +214,23 @@
     	<artifactId>struts2-json-plugin</artifactId>
     	<version>2.3.4.1</version>
     </dependency>
+    <dependency>
+    	<groupId>com.primeton.eos</groupId>
+    	<artifactId>richweb</artifactId>
+    	<version>1.0</version>
+    </dependency>
     <!-- 以下为  域登录  所需jar包 
     <dependency>
 		<groupId>org.samba.jcifs</groupId>
 		<artifactId>jcifs</artifactId>
 		<version>1.3.3</version>
 	</dependency>-->
-    
+
+    <dependency>
+    	<groupId>javax</groupId>
+    	<artifactId>javaee-web-api</artifactId>
+    	<version>6.0</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>humabot-online</finalName>
@@ -271,7 +291,7 @@
     			</webAppConfig>
     			<stopKey>foo</stopKey>
     			<stopPort>9999</stopPort>
-				<reload>manual</reload>
+				<reload>auto</reload>
 				<properties>
 					<cargo.jvmargs>
 						-Xdebug

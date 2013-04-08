@@ -1,0 +1,3 @@
+global.language.chinese=中文
+global.language.japanese=日本語の
+global.language.english=English
