@@ -71,6 +71,11 @@
     	<version>${tiles.version}</version>
     </dependency>
     <dependency>
+    	<groupId>c3p0</groupId>
+    	<artifactId>c3p0</artifactId>
+    	<version>0.9.1.2</version>
+    </dependency>
+    <dependency>
 	    <groupId>org.apache.tiles</groupId>
 	    <artifactId>tiles-extras</artifactId>
     <version>${tiles.version}</version>
@@ -103,6 +108,11 @@
     <dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-context</artifactId>
+    	<version>${struts2.springPlatformVersion}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-tx</artifactId>
     	<version>${struts2.springPlatformVersion}</version>
     </dependency>
     <dependency>
@@ -197,12 +207,12 @@
     	<artifactId>cxf-rt-transports-http</artifactId>
     	<version>2.6.2</version>
     </dependency>
-    <!-- 以上为Web service 所需jar包 
+    <!-- 以上为Web service 所需jar包 -->
     <dependency>
     	<groupId>${project.groupId}</groupId>
     	<artifactId>humabot-common</artifactId>
     	<version>${project.version}</version>
-    </dependency>-->
+    </dependency>
     <dependency>
     	<groupId>net.sf.json-lib</groupId>
     	<artifactId>json-lib</artifactId>
@@ -213,11 +223,6 @@
     	<groupId>org.apache.struts</groupId>
     	<artifactId>struts2-json-plugin</artifactId>
     	<version>2.3.4.1</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.primeton.eos</groupId>
-    	<artifactId>richweb</artifactId>
-    	<version>1.0</version>
     </dependency>
     <!-- 以下为  域登录  所需jar包 
     <dependency>
@@ -291,7 +296,8 @@
     			</webAppConfig>
     			<stopKey>foo</stopKey>
     			<stopPort>9999</stopPort>
-				<reload>auto</reload>
+				<!--
+				<reload>automic</reload>-->
 				<properties>
 					<cargo.jvmargs>
 						-Xdebug
