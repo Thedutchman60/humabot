@@ -16,27 +16,35 @@
 	<!--该属性设置浏览器是否缓存静态内容.当应用处于开发阶段时,我们希望每次请求都获得服务器的最新响应,则可设置该属性为false.  --> 
 	<constant name="struts.serve.static.browserCache" value="false" />
 	<!--<constant name="struts.locale" value="zh_CN"/>
-	 多个文件的话用逗号隔开 -->  
-	<constant name="struts.custom.i18n.resources" value="i18n/messages"/>
+	 多个文件的话用逗号隔开-->  
+	<constant name="struts.custom.i18n.resources" value="i18n/messages"/> 
 	<!--该属性指定上传文件的临时保存路径,该属性的默认值是javax.servlet.context.tempdir.   
 	<constant name="struts.multipart.saveDir" value="" />-->
 	
 	
 	<package name="cxf-spring" extends="struts-default">
+		<interceptors>
+			<interceptor name="locali18n" class="com.jiguancheng.humabot.filter.LanguageInterceptor"></interceptor>
+			<interceptor-stack name="local">
+				<interceptor-ref name="locali18n"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
 		<action name="callCxf" class="callCxfService">
 			<result name="success">index.jsp</result>
 		</action>
 		<action name="login" class="loginAction">
+			<!--<interceptor-ref name="local"></interceptor-ref>到页面前执行拦截-->
 			<result name="success" >/jsp/welcome.jsp</result>
 			<result name="input" >/jsp/login.jsp</result>
 		</action>
-		<action name="welcome" class="loginAction">
-			<result name="success">/jsp/welcome.jsp</result>
-			<result name="input">/jsp/login.jsp</result>
+		<action name="languageLocale" class="loginAction" method="languageLocale">
+			<!--<interceptor-ref name="local"></interceptor-ref>到页面前执行拦截-->
+			<result name="login">/jsp/login.jsp</result>
 		</action>
 		<action name="changeLanguage" class="loginAction" method="changeLanguage">
-			<result name="success">/jsp/welcome.jsp</result>
-			<result name="freemarker" type="freemarker">welcome.jsp</result>
+			<result name="login" type="chain">languageLocale</result>
 		</action>
 	</package>
 	

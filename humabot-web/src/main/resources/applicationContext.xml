@@ -23,30 +23,54 @@
 	        </list>
 	    </property>  
 	</bean>
-	<!-- 国际化操作 拦截器 必需配置，可以和其它国际化方式通用 -->
-	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/> 
-	<!-- 基于Session的国际化配置 -->  
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<property name="defaultLocale" value="zh_CN" />
+	<!-- 基于Session的国际化配置
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/> -->  
+	<!-- 基于Cookie的国际化配置 -->  
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="language"/>
+		<property name="cookieMaxAge" value="94608000"/>
+	    <!-- <property name="defaultLocale" value="en" />-->  
 	</bean>
+	<!-- 国际化操作 拦截器 必需配置，可以和其它国际化方式通用 -->
+	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	</bean> 
+	<!-- 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
        <property name="order" value="0" />
        <property name="interceptors" ref="localeChangeInterceptor" />   
-	</bean>
-	<bean id="className" class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+	</bean>--><!-- 
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="localeChangeInterceptor"/>
+            </list>
+        </property>
+    </bean> 
+	
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 	  <property name="interceptors">
 	   <list>
-	        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	        <ref bean="localeChangeInterceptor"/>
 	   </list>
 	  </property>
-	 </bean>
-	
-	<!-- JNDI获取数据源(使用c3p0连接池) -->  
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
-	            <property name="driverClass" value="${jdbc.driverClass}" />  
-	            <property name="jdbcUrl" value="${jdbc.jdbcUrl}" />  
-	            <property name="user" value="${jdbc.user}" />  
-	            <property name="password" value="${jdbc.password}" />  
+	  <property name="mappings">
+	  <props> 
+	    <prop key="*login.do">loginAction</prop>
+	    </props>
+   	  </property>  
+	</bean>-->
+	<bean id="defaultUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">                
+		<property name="interceptors" ref="localeChangeInterceptor" />
+		<property name="order">
+		<value>1</value>
+		</property>
+	</bean>
+	<!-- JNDI获取数据源(使用c3p0连接池) -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	            <property name="driverClass" value="${jdbc.driverClass}" />
+	            <property name="jdbcUrl" value="${jdbc.jdbcUrl}" />
+	            <property name="user" value="${jdbc.user}" />
+	            <property name="password" value="${jdbc.password}" />
 	            <property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}"/>  
 	            <property name="checkoutTimeout" value="${cpool.checkoutTimeout}"/>  
 	            <property name="initialPoolSize" value="${cpool.minPoolSize}"/>  

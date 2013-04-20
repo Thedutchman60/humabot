@@ -3,17 +3,16 @@ package com.jiguancheng.humabot.login;
 import java.util.Locale;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.jiguancheng.humabot.common.BaseAction;
 import com.jiguancheng.humabot.service.login.LoginService;
 import com.opensymphony.xwork2.Action;
 
-public class LoginAction extends BaseAction implements ServletRequestAware{
+public class LoginAction extends BaseAction{
 
 	static Logger logger = Logger.getLogger(LoginAction.class);
 
@@ -23,8 +22,6 @@ public class LoginAction extends BaseAction implements ServletRequestAware{
 	private String username;
 	private String password;
 	private String msg;
-	private HttpServletRequest request;
-	private String language;
 	
 	public String getUsername() {
 		return username;
@@ -44,44 +41,59 @@ public class LoginAction extends BaseAction implements ServletRequestAware{
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public void setLanguage(String language) {
-		this.language = language;
-	}
 	@Override
 	public String execute() throws Exception {
-		super.getRes(request.getSession());
-		changeLanguage();
+		
+		//super.getRes();
 		if (loginService.doLogin(username, password)) {
 			setMsg("登录成功！");
 			return Action.SUCCESS;
 		}else {
 			setMsg("登录失败");
-			logger.info(getMsg());
+			logger.info(session);
 			return Action.INPUT;
 		}
 	}
 	
-	@Override
-	public void setServletRequest(HttpServletRequest httpservletrequest){
-		this.request = httpservletrequest;
+	
+	public String changeLanguage() {
+		String language = request.getParameter("language");
+		if (!StringUtils.isNotEmpty(language)) {
+			Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                	if ("language".equalsIgnoreCase(cookie.getName())) {
+						language=cookie.getValue();
+					}
+                }
+            }
+		}
+		if (language != null) {
+            Locale locale = getTargetLocal(language);
+            
+            request.getSession().setAttribute("WW_TRANS_I18N_LOCALE",locale);
+            request.getSession().setAttribute("language",language);
+            Cookie languageCookie = new Cookie("language",language);
+            languageCookie.setMaxAge(60 * 60 * 24 * 14);// cookie保存两周  
+            response.addCookie(languageCookie);
+        }else {
+        	request.setAttribute("language",getLocale().toString());
+		}
+		return LOGIN;
 	}
 	
-	public void changeLanguage(){
-		String language = request.getParameter("language");
-		System.out.println(language);
-		if (language != null) {
-            Locale locale = null;
-            if (language.equals("zh_CN")) {
-                locale = new Locale("zh", "CN");  
-            } else if (language.equals("en_US")) {
-                locale = new Locale("en", "US");  
-            } else if (language.equals("ms")) {
-                locale = new Locale("ms");
-            } else {  
-                locale = getLocale();
-            }  
-            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);  
-        }  
-    }  
+	private Locale getTargetLocal(String language){
+		if (StringUtils.isNotEmpty(language)) {
+			String tmp[] = language.split("_");
+			if (tmp.length==2) {
+	            return new Locale(tmp[0], tmp[1]);
+			}
+		}
+		return getLocale();
+	}
+	
+	public String languageLocale(){
+		return LOGIN;
+	}
 	
 }

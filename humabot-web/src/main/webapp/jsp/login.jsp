@@ -11,35 +11,37 @@
 <title><s:property value="%{getText('global.login.title')}"/>
 </title>
     <script type="text/javascript" src="js/console.js"></script>
+    <script type="text/javascript" src="js/language-list.js"></script>
 </head>
 <body>
 <a class="offline-button" href="index.html">Back</a>
 <div id="example" class="k-content">
 	<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 		<div id="login-view" class="k-header">
-	                <div class="right" >
-	                    <label for="culture"><s:property value="%{getText('global.language.select')}"/> :</label>
+	                <div style="float:right" >
+	                    <label for="culture"><s:property value="%{getText('global.language.select')}"/>  :</label>
 	                    <input id="culture" />
 	                </div>
-	                <h2><s:property value="%{getText('label.login.userlogin')}"/>  </h2>
-	                <ul id="fieldlist">
-	                    <li>
-	                    <label ><s:property value="%{getText('label.login.userlogin')}"/>:</label>
-	                    <input type="text" class="k-textbox" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"/>
-	                    </li>
-	                    <li>
-	                    <label for="endDate"><s:property value="%{getText('label.login.password')}"/>:</label>
-	                    <input type="password" class="k-textbox" name="j_password" />
-	                    </li>
-	               		<li>
-		                 <label for="endDate"><s:property value="%{getText('label.login.rememberme')}"/>:</label>
-		                 <input type="checkbox" name="_spring_security_remember_me">
-	                    </li>
-	                <li>
-		    			<input type="submit" style="width: 200px" class="k-button" value="<sp:message code="button.login.logon"/>" />
-		    			<input type="reset" style="width: 200px" class="k-button" value="<sp:message code="button.login.reset" />"/>
-	    			</li>
-	                </ul>
+	                <h2><s:property value="%{getText('label.login.userlogin')}"/> </h2>
+	                <table id="fieldtable" align="center">
+	                	<tr>
+	                		<td align="right"><s:property value="%{getText('label.login.username')}"/>:</td>
+	                		<td><input type="text" class="k-textbox" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"/></td>
+	                	</tr>
+	                	<tr>
+	                		<td align="right"><s:property value="%{getText('label.login.password')}"/>:</td>
+	                		<td> <input type="password" class="k-textbox" name="j_password" /></td>
+	                	</tr>
+	                	<tr>
+	                		<td colspan="2" align="center"><s:property value="%{getText('label.login.rememberme')}"/>
+	                		<input type="checkbox" name="_spring_security_remember_me">
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td  colspan="2"><input type="submit" style="width: 150px" class="k-button" value="<s:property value="%{getText('button.login.logon')}"/>" />
+	                		 <input type="reset" style="width: 150px" class="k-button" value="<s:property value="%{getText('button.login.reset')}"/>"/></td>
+	                	</tr>
+	                </table>
 	            </div>
 	             <style>
 	                #example h2 {
@@ -58,15 +60,8 @@
 	                    background-position: 0 -255px;
 	                }
 	
-	                .right
+	                #fieldtable
 	                {
-	                    float:right;
-	                }
-	
-	                #fieldlist
-	                {
-	                    width: 100%;
-	                    float:left;
 	                    margin:0;
 	                    padding: 10px 0 30px 0;
 	                }
@@ -85,21 +80,23 @@
 	            </style>
 	
 	            <script>
-	                $(document).ready(function() {
+	                $(document).ready(function(e) {
 	
-	                    function languageChange() {
-	                        kendo.culture(this.value());
-		window.location.href="${pageContext.request.contextPath}/login.do?language="+this.value();
+	                    function languageChange(te) {
+	                       var dataItem = this.dataItem(te.item.index());
+		window.location.href="${pageContext.request.contextPath}/changeLanguage.do?language="+dataItem.fieldValue;
 	                    }
 	
 	                    $("#culture").kendoDropDownList({
-	                        change: languageChange,
+	                    	select : languageChange,
 	                        dataTextField: "text",
-	                        dataValueField: "value",
-	                        dataSource: [{text: "简体中文",value:"zh_CN"},
-	                        {text: "en-US",value:"en-US"}]
+	                        dataValueField: "fieldValue",
+	                        dataSource: languages,
+	                        index: switchIndex('${language==null?"en_US":language}')//初始化选择值
 	                    });
 	                });
+	                
+	               
 	            </script>
 	</form>
 </div>
