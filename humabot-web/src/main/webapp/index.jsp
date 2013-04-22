@@ -1,5 +1,6 @@
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="s" uri="struts-tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -8,6 +9,7 @@
 <body>
 <center>
 <h2>Hello World!123</h2>
+<div>username : <sec:authentication property="name"/></div>
 <s:property value="msg" />
 <table align="center" border="1" style="border-collapse: collapse" cellspacing="0" borderColor=#000000>
 	<tr><td>username</td><td>${user.name}</td></tr>

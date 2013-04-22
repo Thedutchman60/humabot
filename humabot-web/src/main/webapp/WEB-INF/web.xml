@@ -42,11 +42,11 @@
         <param-value>true</param-value>
     </init-param>
   </filter>  -->
-  <!-- 配置spiring security 过滤器 
+  <!-- 配置spiring security 过滤器 -->
   <filter>
 	  <filter-name>springSecurityFilterChain</filter-name>
 	  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-  </filter>--> 
+  </filter> 
 
   <filter>
   	<filter-name>struts2</filter-name>
@@ -64,11 +64,11 @@
 	    <filter-name>shiroFilter</filter-name>
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping> 
-	
+	-->
 	<filter-mapping>
 	  <filter-name>springSecurityFilterChain</filter-name>
 	  <url-pattern>/*</url-pattern>
-	</filter-mapping>-->
+	</filter-mapping>
   <filter-mapping>
   	<filter-name>struts2</filter-name>
   	<url-pattern>*.do</url-pattern><!-- 这里不要前面的 '/' -->
@@ -117,9 +117,9 @@
   	<welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
-  <!-- 异常页面处理 -->
+  <!-- 异常页面处理
   <error-page>
   	<error-code>404</error-code>
   	<location>/404.html</location>
-  </error-page>
+  </error-page> -->
 </web-app>

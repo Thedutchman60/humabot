@@ -1,8 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
-<%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="sp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="sp"%>
 <%@taglib prefix="s" uri="struts-tags"%>
 <%@include file="common/common.jsp" %>
 <html>
@@ -10,8 +8,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><s:property value="%{getText('global.login.title')}"/>
 </title>
-    <script type="text/javascript" src="js/console.js"></script>
-    <script type="text/javascript" src="js/language-list.js"></script>
+<script type="text/javascript" src="js/console.js"></script>
+<script type="text/javascript" src="js/language-list.js"></script>
+<style>
+       #example h2 {
+				padding: 5px 0;
+                font-weight: normal;
+				border-bottom: 1px solid #999;
+             }
+       #login-view {
+                 border-radius: 10px 10px 10px 10px;
+                 border-style: solid;
+                 border-width: 1px;
+                 overflow: hidden;
+                 width: 400px;
+                 padding: 20px 20px 0 20px;
+		margin: 30px auto;
+                 background-position: 0 -255px;
+             }
+
+       #fieldtable
+             {
+                 margin:0;
+                 padding: 10px 0 30px 0;
+             }
+
+       #fieldlist li
+             {
+                 list-style:none;
+                 padding:5px 0;
+             }
+	  #fieldlist label {
+		display: inline-block;
+		width: 120px;
+		text-align: right;
+	}
+
+</style>
 </head>
 <body>
 <a class="offline-button" href="index.html">Back</a>
@@ -30,7 +63,9 @@
 	                	</tr>
 	                	<tr>
 	                		<td align="right"><s:property value="%{getText('label.login.password')}"/>:</td>
-	                		<td> <input type="password" class="k-textbox" name="j_password" /></td>
+	                		<td> <input type="password" class="k-textbox" name="j_password" />
+	                		<span style="color:red">${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}</span>
+	                		</td>
 	                	</tr>
 	                	<tr>
 	                		<td colspan="2" align="center"><s:property value="%{getText('label.login.rememberme')}"/>
@@ -43,41 +78,7 @@
 	                	</tr>
 	                </table>
 	            </div>
-	             <style>
-	                #example h2 {
-						padding: 5px 0;
-	                    font-weight: normal;
-						border-bottom: 1px solid #999;
-	                }
-	                #login-view {
-	                    border-radius: 10px 10px 10px 10px;
-	                    border-style: solid;
-	                    border-width: 1px;
-	                    overflow: hidden;
-	                    width: 400px;
-	                    padding: 20px 20px 0 20px;
-						margin: 30px auto;
-	                    background-position: 0 -255px;
-	                }
-	
-	                #fieldtable
-	                {
-	                    margin:0;
-	                    padding: 10px 0 30px 0;
-	                }
-	
-	                #fieldlist li
-	                {
-	                    list-style:none;
-	                    padding:5px 0;
-	                }
-					#fieldlist label {
-						display: inline-block;
-						width: 120px;
-						text-align: right;
-					}
-	
-	            </style>
+	            
 	
 	            <script>
 	                $(document).ready(function(e) {
