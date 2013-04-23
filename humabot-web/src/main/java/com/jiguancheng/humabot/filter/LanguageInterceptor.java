@@ -24,7 +24,7 @@ public class LanguageInterceptor extends AbstractInterceptor {
 			Locale locale=new Locale(loc[0],loc[1]);
 			ServletActionContext.getRequest().getSession().setAttribute("WW_TRANS_I18N_LOCALE", locale);
 			ServletActionContext.getRequest().getSession().setAttribute("language", locale.toString());
-			System.out.println("ddd"+locale.toString());
+			//System.out.println("ddd"+locale.toString());
 		}
 		return arg0.invoke();
 	}
