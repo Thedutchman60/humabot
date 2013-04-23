@@ -101,8 +101,8 @@
     
     <!-- 改用spring的安全认证 spring-security
 	<import resource="applicationContext-shiro.xml"/>
-	<import resource="applicationContext-security.xml"/>
 	 -->
+	<import resource="applicationContext-security.xml"/>
 	<import resource="applicationContext-webservice.xml"/>
 	<import resource="applicationContext-login.xml"/>
 	
