@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="sp"%>
 <%@taglib prefix="s" uri="struts-tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="common/common.jsp" %>
 <html>
 <head>
@@ -23,25 +24,16 @@
                  overflow: hidden;
                  width: 400px;
                  padding: 20px 20px 0 20px;
-		margin: 30px auto;
+				 margin: 30px auto;
                  background-position: 0 -255px;
              }
 
        #fieldtable
              {
+             	 width:100%;
                  margin:0;
                  padding: 10px 0 30px 0;
              }
-
-       #fieldlist li
-             {
-                 list-style:none;
-                 padding:5px 0;
-             }
-	  #fieldlist label {
-		display: inline-block;
-		width: 120px;
-		text-align: right;
 	}
 
 </style>
@@ -56,15 +48,16 @@
 	                    <input id="culture" />
 	                </div>
 	                <h2><s:property value="%{getText('label.login.userlogin')}"/> </h2>
-	                <table id="fieldtable" align="center">
+	                <table id="fieldtable" >
 	                	<tr>
-	                		<td align="right"><s:property value="%{getText('label.login.username')}"/>:</td>
-	                		<td><input type="text" class="k-textbox" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"/></td>
+	                		<td align="right" width="35%"><s:property value="%{getText('label.login.username')}"/>:</td>
+	                		<td ><input type="text" class="k-textbox" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"/></td>
 	                	</tr>
 	                	<tr>
 	                		<td align="right"><s:property value="%{getText('label.login.password')}"/>:</td>
 	                		<td> <input type="password" class="k-textbox" name="j_password" />
 	                		<span style="color:red">${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}</span>
+	                		<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
 	                		</td>
 	                	</tr>
 	                	<tr>
@@ -72,7 +65,7 @@
 	                		<input type="checkbox" name="_spring_security_remember_me">
 	                		</td>
 	                	</tr>
-	                	<tr>
+	                	<tr align="center">
 	                		<td  colspan="2"><input type="submit" style="width: 150px" class="k-button" value="<s:property value="%{getText('button.login.logon')}"/>" />
 	                		 <input type="reset" style="width: 150px" class="k-button" value="<s:property value="%{getText('button.login.reset')}"/>"/></td>
 	                	</tr>
