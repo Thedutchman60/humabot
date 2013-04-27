@@ -1,4 +1,5 @@
 global.login.title=System Login
+global.button.back=Back
 global.language.select=Choose Language
 label.login.userlogin=User Login
 label.login.username=User Name
@@ -6,3 +7,4 @@ label.login.password=Password
 label.login.rememberme=Remember Me
 button.login.logon=logon
 button.login.reset=reset
+usermanage.title.accountlist=Account List

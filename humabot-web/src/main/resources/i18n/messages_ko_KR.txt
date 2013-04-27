@@ -1,4 +1,5 @@
 global.login.title=로그인 시스템
+global.button.back=반환
 global.language.select=선택 언어
 label.login.userlogin=사용자 등록
 label.login.username=사용자 명
@@ -6,3 +7,4 @@ label.login.password=비밀번호
 label.login.rememberme=2 주 이내 에 상륙 할 필 요가 없다
 button.login.logon=로그인
 button.login.reset=재설정
+usermanage.title.accountlist=계정 목록

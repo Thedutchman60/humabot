@@ -1,4 +1,5 @@
 global.login.title=系统登录
+global.button.back=返回
 global.language.select=选择语言
 label.login.userlogin=用户登录
 label.login.username=用户名
@@ -6,3 +7,4 @@ label.login.password=密码
 label.login.rememberme=两周之内不必登陆
 button.login.logon=登录
 button.login.reset=重置
+usermanage.title.accountlist=账户列表
