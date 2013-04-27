@@ -22,4 +22,27 @@
 	  <result property="birthday" column="birth"/>
 	</resultMap>
 	
+	<resultMap id="userMap" type="UserBean">
+	  <id property="userId" column="user_id" />
+	  <result property="userAccount" column="user_account"/>
+	  <result property="userName" column="user_name"/>
+	  <result property="userPassword" column="user_password"/>
+	  <result property="userDesc" column="user_desc"/>
+	  <result property="enabled" column="enabled"/>
+	  <result property="isSys" column="is_sys"/>
+	</resultMap>
+	
+	<select id="queryAllUsers" resultType="UserBean">
+		<![CDATA[
+		SELECT
+		  pu.user_id       AS userId,
+		  pu.user_account  AS userAccount,
+		  pu.user_name     AS userName,
+		  pu.user_password AS userPassword,
+		  pu.enabled,
+		  pu.is_sys        AS isSys,
+		  pu.user_desc     AS userDesc
+		FROM pub_users pu
+		]]>
+	</select>
 </mapper>
