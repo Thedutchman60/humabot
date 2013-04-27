@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="sp"%>
 <%@taglib prefix="s" uri="struts-tags"%>
@@ -9,9 +9,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><s:property value="%{getText('global.login.title')}"/>
 </title>
-<script type="text/javascript" src="js/console.js"></script>
-<script type="text/javascript" src="js/language-list.js"></script>
+<script type="text/javascript" src="<c:url value='/js/console.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/language-list.js'/>"></script>
 <style>
+		
+	   .k-content {
+			background: #fff url("${pageContext.request.contextPath}/img/world-map.png") ;
+		}
        #example h2 {
 				padding: 5px 0;
                 font-weight: normal;
@@ -38,8 +42,8 @@
 
 </style>
 </head>
-<body>
-<a class="offline-button" href="index.html">Back</a>
+<body style="background-repeat:no-repeat;">
+<a class="offline-button" href="index.html"><s:property value="%{getText('global.button.back')}"/></a>
 <div id="example" class="k-content">
 	<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 		<div id="login-view" class="k-header">
