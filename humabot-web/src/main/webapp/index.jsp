@@ -18,6 +18,14 @@
 	<tr><td>email:</td><td>${user.email}</td></tr>
 </table>
 <br/>
+<ol>
+<li><a href="login.do">Test Login</a></li>
+<li><a href="ws/helloWS?wsdl">Test CXF WebService</a></li>
+<li><a href="callCxf.do">action call webservice</a></li>
+<li><a href="input_user.do	">Test Jquery AJAX</a></li>
+<li><a href="jsp/usermanage/user-list.jsp">query all users</a></li>
+<li><a href="j_spring_security_logout">Logout</a></li>
+</ol>
 <a href="">Home</a>
 </center>
 </body>
