@@ -11,12 +11,13 @@
  	<http pattern="/css/**" security="none"/>
  	<http pattern="/js/**" security="none"/>
 	<!-- auto-config = true 则使用from-login. 如果不使用该属性 则默认为http-basic(没有session). 
-			access-denied-page:出错后跳转到的错误页面;-->
+			-->
 	<http auto-config="true" access-denied-page="/common/403.jsp">
 		<!-- intercept-url:拦截器,可以设定哪些路径需要哪些权限来访问.  -->
-		<intercept-url pattern="/index.jsp" access="ROLE_ADMIN" />
+		<intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_FULLY" />
 		<intercept-url pattern="/admin.jsp" access="ROLE_ADMIN" />
-		<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/jsp/usermanage/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<!-- login-page:默认指定的登录页面. authentication-failure-url:出错后跳转页面. default-target-url:成功登陆后跳转页面 -->
 		<form-login login-page="/jsp/login.jsp" authentication-failure-url="/jsp/login.jsp" default-target-url="/index.jsp" />
 		<!-- logout-success-url:成功注销后跳转到的页面; -->
