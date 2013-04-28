@@ -10,17 +10,11 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-
+	<annotation-driven />
     <!-- 把标记了@Controller注解的类转换为bean -->
 	<context:component-scan base-package="com.jiguancheng.humabot.controller" />
 	 <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->     
      <beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
-	<!-- <interceptors>
-            <beans:bean class="com.kendoui.spring.navigation.SourceCodeInterceptor " />         
-	</interceptors> -->
-
-    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory 
-    <resources mapping="/resources/**" location="/resources/" />-->
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
